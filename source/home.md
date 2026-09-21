@@ -6,7 +6,7 @@ css: home.css
 
 Welcome. Under construction.
 
-See who I <a href="/resume/">am</a>.
+See who I <a href="/about/">am</a>.
 
 See what I <a href="/notebook/">think</a>.
 

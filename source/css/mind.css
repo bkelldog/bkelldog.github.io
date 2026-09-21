@@ -66,6 +66,7 @@ h1, h2, h3 {
 }
 
 pre {
+	font-family: inherit;
 	margin: 20px 0;
 	line-height: 1.8;
 	display: flex;

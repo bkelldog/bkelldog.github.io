@@ -1,0 +1,59 @@
+---
+layout: page.njk
+css: about.css
+permalink: /about/index.html
+---
+
+{% include "components/header.njk" %}
+
+<main class="about">
+  <aside class="about-figure">
+    <figure>
+      <img src="/assets/monkey.png" alt="">
+    </figure>
+  </aside>
+
+  <section class="about-text">
+    <p class="ornament">&#10086;</p>
+    <h1>A Note on the Author</h1>
+    <hr class="rule">
+    <p class="subtitle"><em>Wherein the author gives<br>
+      some account of himself, &amp; invites correspondence.</em></p>
+
+    <p class="lede">This site is kept by <span class="author">Will Kelly</span>,
+      a hardware engineer, environmentalist, and reader. It is where he documents
+      his thoughts and his technical knowledge, as well as where he 
+      <a href="/mind/">catalogs</a> the instances of mental inspiration through history
+      which have driven science and engineering forward.</p>
+
+    <p>He hopes this site will be a treasure trove for those who share his interests
+      or his profession. The reader can learn more about his public life in his 
+      <a href="/resume/">resume</a>.</p>
+
+    <p>The author invites all correspondence, particularly from readers with <i>incongruous interests</i>
+      or exotic curiosities, and who share his temperment towards deep, obsessive, study
+      on overlooked topics.</p>
+
+    <hr class="rule short">
+
+    <p class="label">Correspondence</p>
+    <p class="prose">Letters are welcome: particularly
+    responses to the <a href="/notebook/">notebook</a> or concerning the
+    <a href="/mind/">Work of the Mind</a>, perhaps to give corrections or to
+      suggest new thinkers. Text or DM are likewise quite welcome.</p>
+
+    <p class="label">Addressed to</p>
+    <p class="address"><a href="mailto:will@imbas.tech">will@imbas.tech</a></p>
+
+    <p class="label">Also found on</p>
+    <ul class="elsewhere">
+      <li><a class="place" href="{{ site.socialMedia.github }}">Github</a></li>
+      <li><a class="place" href="{{ site.socialMedia.telegram }}">Telegram</a></li>
+      <li><a class="place" href="{{ site.socialMedia.instagram }}">Instagram</a></li>
+      <li><a class="place" href="{{ site.socialMedia.linkedIn }}">LinkedIn</a></li>
+      <li><a class="place" href="{{ site.socialMedia.twitter }}">Twitter</a></li>
+    </ul>
+
+    <p class="ornament closing">&#10087;</p>
+  </section>
+</main>
