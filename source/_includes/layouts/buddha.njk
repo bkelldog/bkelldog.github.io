@@ -1,0 +1,26 @@
+{% extends "layouts/page.njk" %}
+
+{% block head %}
+  <link rel="stylesheet" href="/css/mind.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Work of the Mind">
+  <meta name="twitter:description" content="Sifting through the minds of history's eminent thinkers.">
+  <meta name="twitter:image" content="https://wavelab.neocities.org/assets/buddha-with-bg.webp">
+  <meta name="twitter:site" content={{site.socialMedia.twitterHandle}}>
+  <meta name="twitter:creator" content={{site.socialMedia.twitterHandle}}>
+{% endblock %}
+
+{% block body %}
+{% include "components/header.njk" %}
+
+<main>
+  {% block content %}
+    {{ content | safe }}
+  {% endblock %}
+</main>
+{% endblock %}
+
+{% block extra_scripts %}{% endblock %}
+
+{% block footer %}{% endblock %}

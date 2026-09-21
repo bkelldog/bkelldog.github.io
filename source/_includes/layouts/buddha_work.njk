@@ -1,0 +1,62 @@
+{% extends "layouts/buddha.njk" %}
+
+{% block extra_nav %}
+<a href="/mind/">Buddha</a>
+{% endblock %}
+
+{% block content %}
+<article>
+  <section id="work-header">
+    <!-- Page title --->
+    <div class="header-row">
+      <h2 id="work-title">{% if url %}<a href="{{ url }}" target="_blank">{% endif %}{{ title }}{% if url %}</a>{% endif %}</h2>
+      {% if bookmark %}
+        {% include "components/bookmark_toggle.njk" %}
+      {% endif %}
+    </div>
+
+    <!-- Page author and language toggles -->
+    <div class="header-row">
+      <h3 id="author">{{ author | normalizeName }}</h3>
+
+      {% if languages and languages.length > 1 %}
+      <nav class="language-toggle" data-lang-toggle>
+        <span class="underline"></span>
+        {% for lang in languages %}
+        <span class="lang-option {% if loop.first %}active{% endif %}"
+          data-lang="{{ lang }}" role="button" tabindex="0">
+          {{ lang | upper }}
+        </span>
+        {% endfor %}
+      </nav>
+      {% endif %}
+
+    </div>
+  </section>
+  <hr>
+  <section id="work-content">
+    {% if type and type == "poem" %}
+    <div class="poem">
+    {% endif %}
+      {{ content | safe }}
+    {% if type and type == "poem" %}
+    </div>
+    {% endif %}
+  </section>
+  {% if citation %}
+  <hr>
+    <p>See <i>{{ citation | safe }}</i></p>
+  {% endif %}
+</article>
+{% if bookmark %}
+  {% include "components/bookmark.njk" %}
+{% endif %}
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block extra_scripts %}
+{% if languages and languages.length > 1 %}
+<script src="/scripts/multi-lang.js"></script>
+{% endif %}
+{% endblock %}

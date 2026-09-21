@@ -1,0 +1,20 @@
+---
+layout: buddha.njk
+css: mind.css
+---
+
+<section id="buddha" class="fade-in">
+	<img src="/assets/buddha.webp" id="gandhara-buddha"/>
+	<!-- This is the Standing Buddha of Gandhara, if you wanted to know. -->
+	<p id="tagline">The Work of the Mind</p>
+</section>
+<section id="thinkers" class="fade-in">
+	{% for thinker in collections.thinkers %}
+	<div id="{{ thinker.data.name }}" class="thinker-container">
+		<p class="thinker-name">{{ thinker.data.name }}</p>
+		{% for work in thinker.data.works %}
+		<p class="work"><a class="work-url" href="{{ work.url }}">{{ work.data.title }} {% if work.data.year %}({{ work.data.year }}){% endif %}</a></p>
+		{% endfor %}
+	</div>
+	{% endfor %}
+</section>

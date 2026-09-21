@@ -1,0 +1,158 @@
+<!-- --- Draggable Floating Bookmark --- -->
+<button id="floating-bookmark"
+        aria-label="Bookmark"
+        title="Drag to reposition">
+  <span class="bookmark-arrow">⇦</span>
+  <span class="bookmark-text">BOOKMARK</span>
+</button>
+
+<style>
+  #floating-bookmark {
+    position: absolute;
+    left: 12px;
+    top: 200px;
+    max-width: calc(100% - 24px);
+
+    display: none;
+    align-items: center;
+    gap: 0.4em;
+
+    padding: 0.45em 0.8em 0.45em 0.6em;
+    border: none;
+    border-radius: 999px;
+
+    background: rgba(0, 0, 0, 0.78);
+    color: var(--off-white);
+
+    font-family: system-ui, serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+    cursor: grab;
+    z-index: 99999;
+
+    touch-action: none;
+    user-select: none;
+  }
+
+  #floating-bookmark.dragging {
+    cursor: grabbing;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+  }
+
+  /* Arrow styling */
+  .bookmark-arrow {
+    font-size: 1.1em;
+    line-height: 1;
+    opacity: 0.85;
+  }
+
+  /* Text styling */
+  .bookmark-text {
+    font-size: 0.72em;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* Keyboard focus */
+  #floating-bookmark:focus {
+    outline: 2px solid rgba(255,255,255,0.15);
+    outline-offset: 3px;
+  }
+</style>
+
+<script>
+(() => {
+  const el = document.getElementById("floating-bookmark");
+
+  if (!el) return;
+
+  let dragging = false;
+  let startX = 0, startY = 0;
+  let startLeft = 0, startTop = 0;
+  
+  // Default: 12px from right edge, 200px from top
+  el.style.left = (window.innerWidth - el.offsetWidth - 12) + "px";
+  el.style.top = "200px";
+
+  function clampPosition(left, top) {
+    const minX = 12;
+    const minY = 12;
+    const maxX = window.scrollX + window.innerWidth - el.offsetWidth - 16;
+    const maxY = window.scrollY + window.innerHeight - el.offsetHeight - 12;
+
+    return {
+      left: Math.min(Math.max(left, minX), maxX),
+      top: Math.min(Math.max(top, minY), maxY)
+    };
+  }
+
+  function onPointerDown(e) {
+    e.preventDefault();
+    dragging = true;
+    el.classList.add("dragging");
+
+    startX = e.clientX;
+    startY = e.clientY;
+
+    const rect = el.getBoundingClientRect();
+    startLeft = rect.left + window.scrollX;
+    startTop = rect.top + window.scrollY;
+
+    el.setPointerCapture(e.pointerId);
+  }
+
+  function onPointerMove(e) {
+    if (!dragging) return;
+
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+
+    let newLeft = startLeft + dx;
+    let newTop = startTop + dy;
+
+    // Clamp to viewport
+    const clamped = clampPosition(newLeft, newTop);
+    newLeft = clamped.left;
+    newTop = clamped.top;
+
+    el.style.left = newLeft + "px";
+    el.style.top = newTop + "px";
+  }
+
+  function onPointerUp(e) {
+    if (!dragging) return;
+
+    dragging = false;
+    el.classList.remove("dragging");
+    el.releasePointerCapture(e.pointerId);
+
+    const rect = el.getBoundingClientRect();
+
+    /* Convert viewport → document coordinates and clamp */
+    const docLeft = window.scrollX + rect.left;
+    const docTop = window.scrollY + rect.top;
+
+    const clamped = clampPosition(docLeft, docTop);
+
+    el.style.left = clamped.left + "px";
+    el.style.top = clamped.top + "px";
+  }
+
+  function fixBookmarkPosition() {
+    const rect = el.getBoundingClientRect();
+    const clamped = clampPosition(rect.left + window.scrollX, rect.top + window.scrollY);
+    el.style.left = clamped.left + "px";
+    el.style.top = clamped.top + "px";
+  }
+
+  // Optional: re-clamp on window resize
+  window.addEventListener("resize", fixBookmarkPosition);
+
+  el.addEventListener("pointerdown", onPointerDown);
+  window.addEventListener("pointermove", onPointerMove);
+  window.addEventListener("pointerup", onPointerUp);
+  fixBookmarkPosition();
+})();
+</script>

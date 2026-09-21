@@ -20,6 +20,36 @@ module.exports = function (eleventyConfig) {
     return collectionApi.getFilteredByGlob("source/notebook/*.md");
   });
 
+  // Collect thinkers and works together for processing.
+  eleventyConfig.addCollection("thinkers", function (collectionsApi) {
+
+    // Get thinkers
+    const thinkers = collectionsApi.getFilteredByGlob("source/thinkers/*.md");
+
+    // Get works
+    const works = collectionsApi.getFilteredByGlob("source/thinkers/works/*.md");
+
+    // Nest each thinker's works under his data structure
+    thinkers.forEach(function (thinker, tIndex) {
+      thinker.data.works = [];
+      works.forEach(function (work, wIndex) {
+        if (work.data.author === thinker.data.slug) {
+          thinker.data.works.push(work);
+        }
+      });
+    });
+
+    // Create a warning when we encounter a work file with no corresponding thinker.
+    const slugs = new Set(thinkers.map(t => t.data.slug));
+    works
+      .filter(work => !slugs.has(work.data.author))
+      .forEach(work => console.warn(
+        `[thinkers] Orphaned work (author "${work.data.author}" matches no thinker): ${work.inputPath}`
+      ));
+
+    return thinkers;
+  });
+
   eleventyConfig.amendLibrary("md", mdLib => {
     mdLib.use(footnote);
 
@@ -85,6 +115,28 @@ module.exports = function (eleventyConfig) {
       </div>`;
   });
 
+  // Create a shortcode 'lang' which allows us to designate different language versions of the same text.
+  eleventyConfig.addPairedShortcode("lang", function(content, lang) {
+    // Process through markdown first
+    const markdownContent = md.render(content);
+
+    const processed = markdownContent
+      .split('\n')
+      .map(line => {
+        const match = line.match(/^(\s+)/);
+        if (match) {
+          const spaces = match[1]
+            .replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;') // Tab = 4 spaces
+            .replace(/ /g, '&nbsp;'); // Space = nbsp
+          return spaces + line.trim();
+        }
+        return line;
+      })
+      .join('\n');
+    
+    return `<div class="lang lang-${lang}" lang="${lang}">${processed}</div>`;
+  });
+
   // Filter to properly format dates. Use like this: {{ page.date | formatDate("YYYY-MM-DD") }}
   eleventyConfig.addFilter("formatDate", function (value, format = "MMMM Do, YYYY") {
     if (!value) return '';
@@ -135,6 +187,24 @@ module.exports = function (eleventyConfig) {
 
     // Replace tokens in the format string (longer tokens first to avoid partial matches)
     return format.replace(/YYYY|MMMM|MMM|Do|YY|DD|MM|M|D/g, match => tokens[match] || match);
+  });
+
+  // Filter to properly format names. Use like this: {{ author | normalizeName }}
+  eleventyConfig.addFilter("normalizeName", function (slug) {
+    if (!slug || typeof slug !== "string") return "";
+
+    const thinkers = this?.ctx?.collections?.thinkers;
+    if (!Array.isArray(thinkers)) return fallback(slug);
+
+    const match = thinkers.find(t =>
+      t.data && t.data.slug === slug
+    );
+
+    if (match && match.data && match.data.name) {
+      return match.data.name;
+    }
+
+    return fallback(slug);
   });
 
   return {

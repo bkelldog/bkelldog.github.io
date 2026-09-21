@@ -16,7 +16,7 @@
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="{{ site.twitter_handle }}">
+    <meta name="twitter:site" content="{{ site.socialMedia.twitterHandle }}">
     <meta name="twitter:title" content="{{ site.title }}">
     <meta name="twitter:creator" content="{{ site.author }}">
     <meta name="twitter:description" content="{{ site.description }}">
@@ -36,5 +36,9 @@
     {% if script %}
     <script src="/scripts/{{ script }}"></script>
     {% endif %}
+
+    {% block extra_scripts %}{% endblock %}
+
+    {% block footer %}{% endblock %}
   </body>
 </html>

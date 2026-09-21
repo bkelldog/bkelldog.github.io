@@ -1,0 +1,4 @@
+{
+  "layout": "buddha_work.njk",
+  "permalink": "/mind/{{ page.fileSlug }}/"
+}

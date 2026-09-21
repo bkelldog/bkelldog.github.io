@@ -1,0 +1,88 @@
+<div class="bookmark-toggle">
+  <span class="toggle-label">Draggable Bookmark</span>
+  <label class="switch" title="Toggle bookmark">
+    <input type="checkbox" onclick="toggleVisibility()" id="bookmark-toggle">
+    <span class="slider round"></span>
+  </label>
+</div>
+
+<style>
+.bookmark-toggle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.toggle-label {
+  font-size: 10pt;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.3);
+  transition: .2s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--off-white);
+  transition: .3s;
+}
+
+input:checked + .slider {
+  background-color: #282828;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.3);
+}
+
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+.slider.round {
+  background-color: var(--off-black);
+  border-radius: 999px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
+
+<script>
+function toggleVisibility() {
+  const bookmark = document.getElementById("floating-bookmark");
+  const checkbox = document.getElementById("bookmark-toggle");
+
+  if (!bookmark || !checkbox) return;
+
+  if (checkbox.checked)
+    bookmark.style.display = "inline-flex";
+  else
+    bookmark.style.display = "none";
+}
+</script>

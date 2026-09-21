@@ -1,0 +1,248 @@
+body {
+	font-size: 12pt;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
+	width: 60%;
+}
+
+main {
+	width: 100%;
+}
+main > p {
+	margin-top: 1em;
+}
+
+article p {
+	margin-top: 1em;
+}
+
+header {
+	width: 100%;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+section {
+	width: 100%;
+}
+
+img {
+	height: 80%;
+	width: 100%;
+	border-bottom: 1px solid var(--off-black);
+}
+
+p {
+	margin: 0;
+	cursor: default;
+	text-wrap: wrap;
+}
+
+a,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+    color: var(--red-type);
+    text-decoration: none;
+}
+
+a:hover,
+a:active,
+a:focus {
+    text-decoration: underline;
+}
+
+nav > a {
+	margin-right: 2em;
+}
+
+h1, h2, h3 {
+	margin: 0;
+	cursor: default;
+	text-wrap: wrap;
+}
+
+pre {
+	margin: 20px 0;
+	line-height: 1.8;
+	display: flex;
+	flex-direction: column;
+}
+
+hr {
+	width: 100%;
+	margin: 1em 0;
+}
+
+blockquote {
+	margin: 20px 40px;
+}
+
+blockquote p {
+	margin: 0;
+}
+
+center {
+	margin-top: 1rem;
+}
+
+footer {
+	width: 100%;
+	margin-bottom: 50px;
+}
+
+#buddha {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#gandhara-buddha {
+    margin-top: 2em;
+}
+
+#tagline {
+    color: var(--off-black-darker);
+	margin-bottom: 5em;
+}
+
+#thinkers {
+	display: flex;
+	flex-direction: column;
+}
+
+.thinker-container {
+	margin-bottom: 30px;
+}
+
+.thinker-container p {
+    color: var(--off-black-darker)
+}
+
+.thinker-container p:first-child {
+  text-align: left;
+  padding-left: 2em;
+}
+
+.thinker-container p:not(:first-child) {
+  text-align: right;
+  padding-right: 2em;
+}
+
+.work > a {
+	display: inline-block;
+	max-width: 85%;
+}
+
+#work-header {
+	margin-top: 1em;
+}
+
+#work-content p {
+	line-height: 1.5em;
+}
+
+#work-title * {
+    color: var(--off-black-darker);
+}
+
+.poem {
+	white-space: pre;
+	line-height: 1.5em;
+	display: flex;
+	flex-direction: column;
+}
+
+.emdash::before {
+  content: "—";
+  display: inline-block;
+  transform: scaleX(2);
+}
+
+/* ---- MULTI LANG UI ---- */
+.lang[hidden] {
+  display: none;
+}
+
+.poem .lang p, .poem .lang pre {
+	margin: 0;
+}
+
+.header-row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 0.3em;
+}
+
+.language-toggle {
+  position: relative;
+  display: inline-flex;
+  gap: 1.5rem;
+  cursor: pointer;
+  font-variant: small-caps;
+}
+
+.language-toggle .lang-option {
+  position: relative;
+  padding-bottom: 0.25rem;
+  color: inherit;
+}
+
+.language-toggle .underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 0;
+  background: currentColor;
+  transition: transform 0.3s ease, width 0.3s ease;
+}
+
+/* ---- Buddha fade-In Effect ---- */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 720px) {
+	body {
+		width: 95%;
+	}
+
+	.thinker-name {
+		margin-bottom: 1em;
+	}
+
+	.thinker-container {
+		margin-top: 1em;
+	}
+	.thinker-container p:first-child {
+	  padding-left: 0;
+	}
+
+	.thinker-container p:not(:first-child) {
+	  padding-right: 0;
+	}
+
+	.work > a {
+		display: inline-block;
+		max-width: 70%;
+	}
+}
+
+@media (max-width: 500px) {
+	body {
+		font-size: 10pt;
+	}
+}

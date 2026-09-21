@@ -5,26 +5,22 @@
   "language": "en",
   "baseUrl": "https://willkelly.dev",
   "favicon": "/assets/favicon.svg",
-  "welcomeText": ["Welcome.", "Here to see...", "Circuits", "Networking", "Microcontrollers", "Web Design", "Homelab", "Data Storage", "Math", "Robotics", "...."],
-  "writings": {
-    "title": "Lettres-aux-Phares",
-    "description": "Writings on history's most eminent thinkers."
-  },
   "navLinks": [
     { "text": "Home", "url": "/" },
     { "text": "Notebook", "url": "/notebook/" },
-    { "text": "Knowledge", "url": "/knowledge/" }
+    { "text": "Knowledge", "url": "/knowledge/" },
+    { "text": "The Mind", "url": "/mind/" }
   ],
   "inactiveNavLinks": [
     { "text": "Sketchbook", "url": "/sketchbook/" },
-    { "text": "The Mind", "url": "/mind/" },
     { "text": "Web Design", "url": "/design-gallery/" }
   ],
   "socialMedia": {
     "instagram": "https://www.instagram.com/bkell_dog",
     "linkedIn": "https://www.linkedin.com/in/will-kelly-2b7536184/",
-    "twitter": "https://x.com/159MHz",
-    "github": "https://github.com/BKell-Dog",
+    "twitter": "https://x.com/figuraversator",
+    "twitterHandle": "@figuraversator",
+    "github": "https://github.com/bkelldog",
     "telegram": "https://t.me/bkelldog"
   },
   "currentYear": 2026
