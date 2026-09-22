@@ -1,0 +1,23 @@
+<footer class="site-footer">
+  <div class="footer-ornament" aria-hidden="true">&#8258;</div> <!-- was: <hr> -->
+  <link rel="stylesheet" href="/css/footer.css">
+  <div class="footer-row">
+    <blockquote class="footer-quote" lang="fr">
+      <p>
+        Un phare ironique, infernal<br>
+        Flambeau des grâces sataniques,<br>
+        Soulagement et gloire uniques,<br>
+        &mdash; La conscience dans le Mal!
+      </p>
+    </blockquote>
+    <div class="footer-inner">
+      <span class="footer-years">2025&ndash;<span id="footer-current-year">{{ site.currentYear }}</span></span>
+      <a href="/" class="footer-link">home</a>
+      <a href="{{ site.socialMedia.github }}" class="footer-link" rel="me">github</a>
+      <a href="/about/#contact-anchor" class="footer-link">contact</a>
+    </div>
+  </div>
+  <script>
+    document.getElementById('footer-current-year').textContent = new Date().getFullYear();
+  </script>
+</footer>

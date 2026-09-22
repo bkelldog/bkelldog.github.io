@@ -1,0 +1,67 @@
+.site-footer {
+	margin: 4em auto 1.5em auto;
+	max-width: var(--page-width); /* inherits width from current layout */
+	width: 100%;
+	font-size: 0.85em;
+	color: var(--off-black-darker);
+	font-family: inherit;
+}
+
+/* fleuron tail-piece with hairlines on either side */
+.footer-ornament { 
+	display: flex;
+	align-items: center;
+	gap: 1em;
+	margin: 0 0 2em 0;
+	color: #b8a893;
+	font-size: 1.1em;
+	line-height: 1;
+}
+
+.footer-ornament::before,
+.footer-ornament::after {
+	content: "";
+	flex: 1;
+	border-top: 1px solid #d8c8b3;
+}
+
+.footer-row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 2em;
+}
+
+.footer-quote {
+	font-size: 0.9rem;
+	color: var(--off-black-darker);
+	margin: 0;
+	font-style: italic;
+	line-height: 1.5;
+	text-align: left;
+}
+
+.footer-quote p {
+	margin: 0;
+}
+
+.footer-inner {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	gap: 1.5em;
+	text-align: right;
+}
+
+.footer-link {
+	color: var(--red-type);
+	font-size: 0.9rem;
+	font-variant: small-caps;
+	letter-spacing: 0.08em;
+	text-decoration: none;
+}
+
+.footer-link:hover {
+	text-decoration: underline;
+}
