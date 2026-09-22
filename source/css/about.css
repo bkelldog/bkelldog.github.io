@@ -16,11 +16,18 @@ i {
 .about {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	grid-template-areas:
+		"figure body"
+		"figure corr";
 	column-gap: 6vw;
 	align-items: start;
 	max-width: 72vw;
 	margin: 6vh auto 8vh;
 }
+
+.about-figure         { grid-area: figure; }
+.about-body           { grid-area: body; }
+.about-correspondence { grid-area: corr; }
 
 .about-text {
 	max-width: 34em;
@@ -182,8 +189,14 @@ i {
 @media (max-width: 900px) {
 	.about {
 		grid-template-columns: 1fr;
-		max-width: 90vw;
-		row-gap: 3vh;
+		grid-template-areas:
+			"body"
+			"figure"
+			"corr";
+		max-width: 75vw;
+		column-gap: 0;
+		row-gap: 2vh;
+		margin: 4vh auto 6vh;
 	}
 
 	.about-figure {
@@ -191,6 +204,69 @@ i {
 	}
 
 	.about-figure figure {
+		max-width: 16em;
+	}
+
+	.about-text {
+		max-width: none;
+	}
+}
+
+@media (max-width: 520px) {
+	.about {
+		max-width: 80vw;
+		margin: 3vh auto 5vh;
+	}
+
+	.about-text {
+		font-size: 0.95em;
+		line-height: 1.55;
+	}
+
+	.about-text h1 {
+		font-size: 1.65em;
+	}
+
+	.about-text .subtitle {
+		margin: 0 0 1.6em;
+	}
+
+	.about-text .subtitle br {
+		display: none;
+	}
+
+	.about-text p {
+		text-align: justify;
+		hyphens: manual;
+	}
+
+	.about-text .prose {
+		text-align: left;
+	}
+
+	.about-text .lede::first-letter {
+		font-size: 2.8em;
+	}
+
+	.about-text .ornament {
+		font-size: 1.25em;
+	}
+
+	.about-text .rule {
+		width: 55%;
+	}
+
+	.about-text .rule.short {
+		width: 35%;
+		margin: 1.6em auto 1.2em;
+	}
+
+	.about-text .elsewhere {
+		column-gap: 1em;
 		max-width: 18em;
+	}
+
+	.about-figure figure {
+		max-width: 12em;
 	}
 }
