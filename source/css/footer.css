@@ -48,9 +48,9 @@
 
 .footer-inner {
 	display: flex;
+	flex-direction: column;
 	flex-wrap: wrap;
 	justify-content: flex-end;
-	gap: 1.5em;
 	text-align: right;
 }
 
