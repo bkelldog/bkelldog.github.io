@@ -55,6 +55,11 @@ a:focus {
     text-decoration: underline;
 }
 
+i {
+	color: var(--red-type);
+	font-style: normal;
+}
+
 nav > a {
 	margin-right: 2em;
 }
@@ -106,9 +111,19 @@ footer {
     margin-top: 2em;
 }
 
-#tagline {
+#page-intro {
     color: var(--off-black-darker);
-	margin-bottom: 5em;
+	margin-bottom: 3.5em;
+}
+
+#tagline {
+	margin: 0 auto;
+	width: fit-content;
+}
+
+.narrow-col {
+	max-width: 50%;
+	margin: 0 auto;
 }
 
 #thinkers {

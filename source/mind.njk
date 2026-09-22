@@ -4,9 +4,13 @@ css: mind.css
 ---
 
 <section id="buddha" class="fade-in">
-	<img src="/assets/buddha.webp" id="gandhara-buddha"/>
 	<!-- This is the Standing Buddha of Gandhara, if you wanted to know. -->
-	<p id="tagline">The Work of the Mind</p>
+	<img src="/assets/buddha.webp" id="gandhara-buddha"/>
+	<div id="page-intro">
+		<p id="tagline">The Work of the Mind</p>
+		<br>
+		<p class="narrow-col">The mind is <i>illuminated</i> by a vision, suddenly, revealing the truth, making a great discovery. How is such a think <i>induced</i>?</p>
+	</div>
 </section>
 <section id="thinkers" class="fade-in">
 	{% for thinker in collections.thinkers %}
