@@ -20,4 +20,24 @@ header > nav {
 .nav-links > li {
 	flex: 1;
 	text-align: center;
+	padding: 0 0.4em;
+}
+
+@media (max-width: 620px) {
+	header {
+		font-size: 0.9em;
+		padding: 0 0.5em;
+	}
+
+	.nav-links {
+		flex-wrap: wrap;
+		row-gap: 0.4em;
+		column-gap: 0.6em;
+		justify-content: center;
+	}
+
+	.nav-links > li {
+		flex: 0 1 auto;
+		padding: 0;
+	}
 }

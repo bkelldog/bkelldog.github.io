@@ -4,6 +4,7 @@
 	--off-black-darker: #222222;
 	--paper: #fffbf6;
 	--red-type: #c8392b;
+	--page-width: 60vw;
 }
 
 html {
@@ -29,7 +30,7 @@ a.red-type:hover {
 
 article {
 	margin: 5vh auto;
-	max-width: 60vw;
+	max-width: var(--page-width);
 }
 
 .fit-image {
