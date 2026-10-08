@@ -10,6 +10,7 @@
     { "text": "About", "url": "/about/" },
     { "text": "Notebook", "url": "/notebook/" },
     { "text": "Knowledge", "url": "/knowledge/" },
+    { "text": "Bookshelf", "url": "/bookshelf/" },
     { "text": "The Mind", "url": "/mind/" }
   ],
   "inactiveNavLinks": [

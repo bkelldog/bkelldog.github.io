@@ -1,0 +1,201 @@
+body {
+	--page-width: 580px;
+}
+
+a,
+a:hover {
+	color: var(--red-type);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.bookshelf {
+	max-width: var(--page-width);
+	margin: 6vh auto 0;
+	padding: 0 16px;
+	line-height: 1.5;
+}
+
+/* ---- Heading, set between double rules ---- */
+.list-head {
+	text-align: center;
+	margin-bottom: 3em;
+}
+
+.double-rule {
+	border: 0;
+	border-top: 3px double var(--off-black);
+	margin: 0;
+}
+
+.list-head h1 {
+	margin: 0.6em 0 0;
+	font-size: 1.9em;
+	font-weight: normal;
+	font-variant: small-caps;
+	letter-spacing: 0.12em;
+	color: var(--off-black-darker);
+}
+
+.by-line {
+	margin: 0 0 0.7em;
+	font-style: italic;
+	color: var(--off-black-darker);
+}
+
+.list-note {
+	margin: 0.8em 0 0;
+	font-size: 0.9em;
+	font-style: italic;
+}
+
+/* ---- Books being read, wrapped in a box ---- */
+.in-preparation {
+	margin: 0 0 3.2em;
+	padding: 1.2em 1.4em 0.2em;
+	border: 1px solid #d8c8b3;
+	outline: 1px solid #d8c8b3;
+	outline-offset: 3px;
+}
+
+.section-label {
+	margin: 0;
+	text-align: center;
+	font-size: 1.05em;
+	font-weight: normal;
+	font-variant: small-caps;
+	letter-spacing: 0.12em;
+	color: var(--red-type);
+}
+
+.section-note {
+	margin: 0 0 1.2em;
+	text-align: center;
+	font-size: 0.9em;
+	font-style: italic;
+}
+
+/* ---- Years ---- */
+.year {
+	margin-bottom: 2.6em;
+}
+
+.year-label {
+	display: flex;
+	align-items: center;
+	gap: 1em;
+	margin: 0 0 1.4em;
+	font-size: 1em;
+	font-weight: normal;
+	letter-spacing: 0.1em;
+	color: var(--off-black-darker);
+}
+
+.year-label::before,
+.year-label::after {
+	content: "";
+	flex: 1;
+	border-top: 1px solid #d8c8b3;
+}
+
+/* ---- Entries ---- */
+.catalogue {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.entry {
+	margin: 0 0 1.6em;
+}
+
+.entry p {
+	margin: 0;
+}
+
+/* Title & year, joined by a line of dots. */
+.entry-line {
+	display: flex;
+	align-items: baseline;
+	gap: 0.4em;
+}
+
+.entry-title {
+	font-size: 1.1em;
+	color: var(--off-black-darker);
+}
+
+.leader {
+	flex: 1;
+	min-width: 2em;
+	overflow: hidden;
+	white-space: nowrap;
+	color: #b8a893;
+}
+
+.leader::before {
+	content: ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .";
+}
+
+.entry-year {
+	font-variant-numeric: oldstyle-nums;
+}
+
+.entry-meta {
+	padding-left: 1.5em;
+	font-size: 0.9em;
+}
+
+.entry-author {
+	font-variant: small-caps;
+	letter-spacing: 0.04em;
+}
+
+.entry-note {
+	padding-left: 1.5em;
+	margin-top: 0.3em;
+	font-size: 0.9em;
+}
+
+.entry-note p {
+	text-align: justify;
+	hyphens: auto;
+}
+
+.entry-note p + p {
+	margin-top: 0.4em;
+	text-indent: 1.5em;
+}
+
+.finis {
+	text-align: center;
+	color: var(--red-type);
+	font-size: 1.5em;
+	margin: 1.6em 0 0;
+}
+
+@media (max-width: 520px) {
+	.bookshelf {
+		margin-top: 3vh;
+	}
+
+	.list-head h1 {
+		font-size: 1.6em;
+	}
+
+	.in-preparation {
+		padding: 1em 0.9em 0.1em;
+	}
+
+	.entry-meta,
+	.entry-note {
+		padding-left: 1em;
+	}
+
+	.entry-note p {
+		text-align: left;
+	}
+}

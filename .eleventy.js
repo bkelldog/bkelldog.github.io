@@ -20,6 +20,35 @@ module.exports = function (eleventyConfig) {
     return collectionApi.getFilteredByGlob("source/notebook/*.md");
   });
 
+  // ----------------- Bookshelf Helpers ----------------------------
+  // Books already finished, order by date.
+  eleventyConfig.addCollection("bookshelf", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("source/bookshelf/*.md")
+      .filter(book => book.data.read)
+      .sort((a, b) => new Date(b.data.read) - new Date(a.data.read));
+  });
+
+  // Books still being read, specifically those with no 'read' metadata.
+  eleventyConfig.addCollection("reading", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("source/bookshelf/*.md")
+      .filter(book => !book.data.read);
+  });
+
+  // Group a sorted list of books into [{ year, books }] by the year each was read.
+  eleventyConfig.addFilter("groupByYearRead", function (books) {
+    const groups = [];
+    books.forEach(book => {
+      const year = new Date(book.data.read).getUTCFullYear();
+      const last = groups[groups.length - 1];
+      if (last && last.year === year) {
+        last.books.push(book);
+      } else {
+        groups.push({ year, books: [book] });
+      }
+    });
+    return groups;
+  });
+
   // Collect thinkers and works together for processing.
   eleventyConfig.addCollection("thinkers", function (collectionsApi) {
 

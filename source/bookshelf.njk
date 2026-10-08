@@ -1,0 +1,58 @@
+---
+layout: page.njk
+css: bookshelf.css
+permalink: /bookshelf/index.html
+---
+
+{% macro entry(book) %}
+<li class="entry" id="{{ book.page.fileSlug }}">
+  <p class="entry-line">
+    <cite class="entry-title">{{ book.data.title }}</cite>
+    <span class="leader" aria-hidden="true"></span>
+    <span class="entry-year">{{ book.data.published }}</span>
+  </p>
+  <p class="entry-meta">
+    By <span class="entry-author">{{ book.data.author }}</span>.{% if book.data.pages %} {{ book.data.pages }} pp.{% endif %}
+  </p>
+  <div class="entry-note">
+    {{ book.templateContent | safe }}
+  </div>
+</li>
+{% endmacro %}
+
+{% include "components/header.njk" %}
+
+<main class="bookshelf">
+  <section class="list-head">
+    <hr class="double-rule">
+    <h1>Books I've Read</h1>
+    <p class="by-line">with Brief Reviews of Each</p>
+    <hr class="double-rule">
+  </section>
+
+  {% if collections.reading.length %}
+  <section class="in-preparation">
+    <h2 class="section-label">Presently Reading</h2>
+    <ul class="catalogue">
+      {% for book in collections.reading %}
+      {{ entry(book) }}
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% for group in collections.bookshelf | groupByYearRead %}
+  <section class="year">
+    <h2 class="year-label">{{ group.year }}</h2>
+    <ul class="catalogue">
+      {% for book in group.books %}
+      {{ entry(book) }}
+      {% endfor %}
+    </ul>
+  </section>
+  {% endfor %}
+
+  <p class="finis">&#10087;</p>
+</main>
+
+{% include "components/footer.njk" %}
